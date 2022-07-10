@@ -43,7 +43,6 @@ class Doctor(models.Model):
         verbose_name = '의사'
         indexes = [
            models.Index(fields=['name']),
-           models.Index(fields=['-date_of_birth',]),
         ]
 
 
