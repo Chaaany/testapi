@@ -8,7 +8,7 @@ django : 4.0.6
 ```
 python -m venv testapivenv
 
-testapivenv/Scripts/activate 실행 
+EXCUTE testapivenv/Scripts/activate
 
 pip install django djangorestframework
 
