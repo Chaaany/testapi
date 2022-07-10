@@ -115,13 +115,6 @@ class DoctorViewSet(ModelViewSet):
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
 
-    def acceptreq(self, request, pk):
-        treatment_request = get_object_or_404(TreatmentRequest, id=pk)
-        treatment_request.is_accepted = True
-        treatment_request.save()
-        serializer = TreatmentDepartmentSerializer(treatment_request)
-        return Response(serializer.data, status = status.HTTP_202_ACCEPTED)
-
 
 class HospitalViewSet(ModelViewSet):
     serializer_class = HospitalSerializer
