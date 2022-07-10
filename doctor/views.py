@@ -17,7 +17,6 @@ class DoctorViewSet(ModelViewSet):
         'searchbydate': DoctorSearchbyDateSerializer
     }
     queryset = Doctor.objects.all()
-    filter_backends = []
 
     def get_serializer_class(self):
         if hasattr(self, 'action_serializers'):
