@@ -91,7 +91,9 @@ class TreatmentTime(models.Model):
     class Meta:
         db_table = 'treatment_time'
         verbose_name = '진료 또는 점심시간'
-
+        indexes = [
+           models.Index(fields=['doctor','day_type']),
+        ]
 
 class Profile(models.Model):
     doctor = models.ForeignKey(
