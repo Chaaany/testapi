@@ -41,6 +41,10 @@ class Doctor(models.Model):
     class Meta:
         db_table = 'doctor'
         verbose_name = '의사'
+        indexes = [
+           models.Index(fields=['name']),
+           models.Index(fields=['-date_of_birth',]),
+        ]
 
 
 class TreatmentDepartment(models.Model):
