@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import status
 from .models import *
+from treatmentrequest.models import *
 from .serializers import *
 from datetime import datetime
 from rest_framework.decorators import action
@@ -118,17 +119,8 @@ class DoctorViewSet(ModelViewSet):
         treatment_request = get_object_or_404(TreatmentRequest, id=pk)
         treatment_request.is_accepted = True
         treatment_request.save()
-
-        treatment_request = TreatmentRequest.objects.filter(id=pk)
-        treatment_request = self.filter_queryset(treatment_request)
-        page = self.paginate_queryset(treatment_request)
-        if page is not None:
-            serializer = TreatmentRequestOutputSerializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = TreatmentRequestOutputSerializer(
-            treatment_request, many=True)
-        return Response(serializer.data)
+        serializer = TreatmentDepartmentSerializer(treatment_request)
+        return Response(serializer.data, status = status.HTTP_202_ACCEPTED)
 
 
 class HospitalViewSet(ModelViewSet):
