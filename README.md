@@ -25,6 +25,16 @@ django-admin startproject config .
 config/settings.py 에서 해당 내용 작성(한국어, 한국 시간 적용)
 
 ```python
+INSTALLED_APPS = [
+    'rest_framework',
+    'patient',
+    'doctor',
+    'treatmentrequest',
+    ...
+]
+
+...
+
 LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'Asia/Seoul'
