@@ -38,9 +38,9 @@ USE_TZ = False
 
 ## migrate makemigrations content
 ```
-python [manage.py](http://manage.py) makemigrations
+python manage.py makemigrations
 
-python [manage.py](http://manage.py) migrate
+python manage.py migrate
 ```
 
 ## API Explanation
