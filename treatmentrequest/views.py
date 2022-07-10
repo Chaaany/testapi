@@ -90,7 +90,6 @@ class TreatmentRequestViewSet(ModelViewSet):
             
             # 의사의 해당 요일 진료 시간 검색
             if doctor_time: # 진료중인 요일일 경우
-                print(1)
                 doctor_time = doctor_time[0]
 
                 start_time = maketime_qs(doctor_time.start_time)
@@ -110,7 +109,6 @@ class TreatmentRequestViewSet(ModelViewSet):
                     request_exp_time = rs['request_exp_time']
                     count_day = rs['count_day']
             else:  # 진료중이지 않은 요일일 경우
-                print(5)
                 oper_chk = False
                 rs = findtime(request_day)
                 count_day = rs['count_day']
