@@ -1,0 +1,5 @@
+# ignore all migrations file
+/*/migrations
+
+# ignore settings.py
+/config/settings.py
