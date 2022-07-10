@@ -29,8 +29,7 @@ class TreatmentRequestViewSet(ModelViewSet):
             return (int)(hour * 60 + minute)
         
         def maketime_qs(qs):
-            hour = (int)(
-                qs.strftime("%H:%M:%S")[-8:-6])
+            hour = (int)(qs.strftime("%H:%M:%S")[-8:-6])
             minute = (int)(qs.strftime(
                 "%H:%M:%S")[-5:-3])
             return (int)(hour * 60 + minute)
@@ -91,13 +90,17 @@ class TreatmentRequestViewSet(ModelViewSet):
             # 의사의 해당 요일 진료 시간 검색
             if doctor_time: # 진료중인 요일일 경우
                 doctor_time = doctor_time[0]
-
                 start_time = maketime_qs(doctor_time.start_time)
                 end_time = maketime_qs(doctor_time.end_time)
-                lunch_start_time = maketime_qs(doctor_time.lunch_start_time)
-                lunch_end_time = maketime_qs(doctor_time.lunch_end_time)
+                lunch_start_time = ""
+                lunch_end_time = ""
                 
-                if lunch_start_time <= request_time and request_time < lunch_end_time: # 점심시간일 경우
+                # 점심시간 있는 경우
+                if doctor_time.lunch_start_time and doctor_time.lunch_end_time:
+                    lunch_start_time = maketime_qs(doctor_time.lunch_start_time)
+                    lunch_end_time = maketime_qs(doctor_time.lunch_end_time)
+                
+                if lunch_start_time and lunch_end_time and lunch_start_time <= request_time and request_time < lunch_end_time: # 점심시간일 경우
                     request_exp_time = lunch_end_time + 15
                     oper_chk = False
                 elif start_time <= request_time and request_time < end_time: # 진료 요청 가능 시간일 경우
