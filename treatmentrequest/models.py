@@ -21,6 +21,5 @@ class TreatmentRequest(models.Model):
         db_table = 'treatment_request'
         verbose_name = '진료 요청'
         indexes = [
-           models.Index(fields=['doctor','day_type']),
            models.Index(fields=['doctor','is_accepted','request_treatment_expiration_time']),
         ]
