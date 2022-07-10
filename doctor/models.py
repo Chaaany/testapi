@@ -15,7 +15,9 @@ class Hospital(models.Model):
     class Meta:
         db_table = 'hospital'
         verbose_name = '병원'
-
+        indexes = [
+           models.Index(fields=['name']),
+        ]
 
 class Doctor(models.Model):
     name = models.CharField(max_length=30, verbose_name='의사명')
@@ -59,7 +61,9 @@ class TreatmentDepartment(models.Model):
     class Meta:
         db_table = 'treatment_department'
         verbose_name = '진료과'
-
+        indexes = [
+           models.Index(fields=['name']),
+        ]
 
 class NonpaidCareItem(models.Model):
     name = models.CharField(max_length=30, verbose_name='비급여 진료항목명')
@@ -74,6 +78,9 @@ class NonpaidCareItem(models.Model):
     class Meta:
         db_table = 'nonpaid_care_item'
         verbose_name = '비급여 진료항목'
+        indexes = [
+           models.Index(fields=['name']),
+        ]
 
 
 class TreatmentTime(models.Model):
@@ -93,6 +100,8 @@ class TreatmentTime(models.Model):
         verbose_name = '진료 또는 점심시간'
         indexes = [
            models.Index(fields=['doctor','day_type']),
+           models.Index(fields=['day_type','end_time']),  
+           models.Index(fields=['day_type','start_time','end_time']), 
         ]
 
 class Profile(models.Model):
@@ -109,3 +118,6 @@ class Profile(models.Model):
     class Meta:
         db_table = 'profile'
         verbose_name = '의사 약력'
+        indexes = [
+           models.Index(fields=['name']),
+        ]
